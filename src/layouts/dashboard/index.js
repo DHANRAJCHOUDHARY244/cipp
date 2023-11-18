@@ -55,7 +55,7 @@ const DashboardLayout = () => {
     },
   }));
   return (
-    <>
+    <Stack direction={'row'}>
       <Box
         p={2}
         sx={{
@@ -149,7 +149,7 @@ onToggleMode()
         </Stack>
       </Box>
       <Outlet />
-    </>
+    </Stack>
   );
 };
 

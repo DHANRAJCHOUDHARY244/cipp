@@ -16,6 +16,7 @@ import React from "react";
 import { faker } from '@faker-js/faker'
 import { ChatList } from "../../data";
 import {SimpleBarStyle} from '../../components/Scrollbar'
+import { useTheme } from "@mui/material/styles";
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     backgroundColor: '#44b700',
@@ -48,7 +49,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: 20,
-  backgroundColor: alpha(theme.palette.background.paper, 1),
+  backgroundColor: alpha(theme.palette.background.default, 1),
   marginRight: theme.spacing(2),
   marginLeft: 0,
   width: "100%",
@@ -75,12 +76,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
+  const theme=useTheme()
   return (
     <Box
       sx={{
         width: "100%",
         borderRadius: 1,
-        backgroundColor: "#FFF",
+        backgroundColor:theme.palette.mode==='light'? "#FFF":theme.palette.background.default,
       }}
       p={2}
     >
@@ -116,16 +118,17 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
   );
 };
 const Chats = () => {
+  const theme=useTheme()
   return (
     <Box
       sx={{
         position: "relative",
         width: 320,
-        backgroundColor: "#f8faff",
+        backgroundColor:theme.palette.mode==='light'? "#f8faff":theme.palette.background.paper,
         boxShadow: "0px 0px 2px rgba(0,0,0,0.25)",
       }}
     >
-      <Stack p={3} spacing={2} sx={{ maxHeight: "100vh" }}>
+      <Stack p={3} spacing={2} sx={{ height: "100vh" }}>
         <Stack
           direction="row"
           alignItems={"center"}
@@ -154,8 +157,10 @@ const Chats = () => {
           </Stack>
           <Divider />
         </Stack>
-        <Stack direction={"column"} sx={{flexGrow:1,overflowY:'scroll',height:'100%'}} >
-        <SimpleBarStyle timeout={500} >
+        <Stack
+        spacing={2}
+         direction={"column"} sx={{flexGrow:1,overflow:'scroll',height:'100%'}} >
+        <SimpleBarStyle  >
           <Stack spacing={2.4} clickOnTrack={false} >
             <Typography variant="subtitle2" color={'#676767'} >
               Pinned
