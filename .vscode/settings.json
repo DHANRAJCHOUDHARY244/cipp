@@ -21,5 +21,7 @@
     "workbench.colorCustomizations": {
         "minimap.background": "#00000000",
         "scrollbar.shadow": "#00000000"
-    }
+    },
+    "superBG.opacity": 28,
+    "superBG.scale": 99
 }
